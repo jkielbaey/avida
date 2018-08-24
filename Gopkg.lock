@@ -19,14 +19,14 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:5bcd69644d220e00eaaa03ab704cfb21ddfe00a8f03dc1ae4f26eda0157f7adb"
-  name = "github.com/miguelmota/go-coinmarketcap"
+  digest = "1:4e01cce89c403cebced5f1a22b15c983e1d18b0e9dcd1e14c00965353ddb824f"
+  name = "github.com/coincircle/go-coinmarketcap"
   packages = [
     ".",
     "types",
   ]
   pruneopts = "UT"
-  revision = "51ba7d35e807241081a66ec8e6257cefa5f3416b"
+  revision = "86a427de333f50fc31470c53bab5d8a02b296ec0"
 
 [[projects]]
   digest = "1:696eb84e9eff9ab93f118a093f41a5279e5d8aec7b5c048a331db0d82564e195"
@@ -79,14 +79,9 @@
   analyzer-version = 1
   input-imports = [
     "github.com/BurntSushi/toml",
-    "github.com/anaskhan96/soup",
-    "github.com/miguelmota/go-coinmarketcap",
-    "github.com/miguelmota/go-coinmarketcap/types",
+    "github.com/coincircle/go-coinmarketcap",
     "github.com/pdepip/go-binance/binance",
     "github.com/sirupsen/logrus",
-    "golang.org/x/crypto/ssh/terminal",
-    "golang.org/x/net/html",
-    "golang.org/x/sys/unix",
   ]
   solver-name = "gps-cdcl"
   solver-version = 1
