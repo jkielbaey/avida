@@ -1,6 +1,7 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"os"
 	"os/user"
@@ -10,9 +11,17 @@ import (
 )
 
 var logger = log.New()
-var coinMap *avida.CoinMap
+var version, build string
 
 func main() {
+
+	versionFlag := flag.Bool("version", false, "prints avida version")
+	flag.Parse()
+
+	if *versionFlag {
+		fmt.Printf("avida version: %s, build: %s\n", version, build)
+		os.Exit(0)
+	}
 
 	usr, err := user.Current()
 	if err != nil {
@@ -41,9 +50,7 @@ func main() {
 
 	// Add all fixed positions from the configuration.
 	var allPositions []avida.Position
-	for _, p := range conf.Positions {
-		allPositions = append(allPositions, p)
-	}
+	allPositions = append(allPositions, conf.Positions...)
 
 	// Retrieve all positions on the exchanges.
 	for _, exchange := range conf.Exchanges {
@@ -57,12 +64,10 @@ func main() {
 	// Determine the USD value of all positions.
 	totalValueUSD := 0.0
 	for _, p := range allPositions {
-		v := p.GetValueUSD()
+		v, _ := p.GetValueUSD()
 		fmt.Printf("%5s : %7.2f => $%7.2f\n", p.Symbol, p.Amount, v)
 		totalValueUSD += v
-		// fmt.Println(p.GetValueUSD())
 	}
 	fmt.Printf("%15s  ------------\n", " ")
 	fmt.Printf(" %-14s    $%7.2f\n", "Total ==> ", totalValueUSD)
-	// fmt.Println(allPositions)
 }

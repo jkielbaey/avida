@@ -17,9 +17,8 @@ type Exchange struct {
 func (e *Exchange) GetPositions() (*[]Position, error) {
 	if e.Exchange == "binance" {
 		return getBinancePositions(e.APIKey, e.APISecret)
-	} else {
-		return nil, errors.New("unsupported exchange")
 	}
+	return nil, errors.New("unsupported exchange")
 }
 
 func getBinancePositions(apiKey string, apiSecret string) (*[]Position, error) {
