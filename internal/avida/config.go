@@ -5,27 +5,18 @@ import (
 	"os/user"
 
 	"github.com/BurntSushi/toml"
-	"github.com/Sirupsen/logrus"
+	log "github.com/sirupsen/logrus"
 )
 
 // Config represents the avida config file.
 type Config struct {
 	LogLevel  string
-	Exchanges []struct {
-		Name      string
-		Enabled   bool
-		APIKey    string
-		APISecret string
-	}
-	ColdAssets []struct {
-		Coin     string
-		Location string
-		Amount   float32
-	}
+	Exchanges []Exchange
+	Positions []Position
 }
 
 // GetConfig reads the avida config file.
-func GetConfig(logger *logrus.Logger) Config {
+func GetConfig(logger *log.Logger) Config {
 	usr, err := user.Current()
 	if err != nil {
 		logger.Fatal(err)
@@ -41,10 +32,10 @@ func GetConfig(logger *logrus.Logger) Config {
 		conf.LogLevel = "info"
 	}
 
-	logger.WithFields(logrus.Fields{
-		"LogLevel":    conf.LogLevel,
-		"#Exchanges":  len(conf.Exchanges),
-		"#ColdAssets": len(conf.ColdAssets),
+	logger.WithFields(log.Fields{
+		"LogLevel":   conf.LogLevel,
+		"#Exchanges": len(conf.Exchanges),
+		"#Positions": len(conf.Positions),
 	}).Info("Config settings")
 
 	return conf
