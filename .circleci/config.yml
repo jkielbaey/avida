@@ -31,8 +31,11 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Install ghr
-          command: go get github.com/tcnksm/ghr
+          name: Install go tools
+          command: go get -u github.com/golang/dep/cmd/dep github.com/tcnksm/ghr
+      - run:
+          name: Install dependencies
+          command: dep ensure --vendor-only
       - run:
           name: Build all release artifacts
           command: make release
