@@ -1,5 +1,7 @@
 # Avida
 
+[![CircleCI](https://circleci.com/gh/jkielbaey/avida.svg?style=svg)](https://circleci.com/gh/jkielbaey/avida)
+
 This tool allows you to get a total overview of your crypto assets. These
 assets can either be on an exchange (currently only binance) or in another
 wallet.
