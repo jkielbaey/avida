@@ -26,10 +26,13 @@ jobs:
           command: make build
   publish-github-release:
     docker:
-      - image: cibuilds/github:latest
+      - image: circleci/golang:1.9
     working_directory: /go/src/github.com/jkielbaey/avida
     steps:
       - checkout
+      - run:
+          name: Install ghr
+          command: go get github.com/tcnksm/ghr
       - run:
           name: Build all release artifacts
           command: make release
