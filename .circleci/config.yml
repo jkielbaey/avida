@@ -12,7 +12,6 @@ jobs:
       - checkout
       - run: go get -u github.com/golang/dep/cmd/dep github.com/alecthomas/gometalinter && gometalinter --install
       - run: dep ensure --vendor-only
-      - run: go vet ./...
-      - run: go test -v ./...
-      - run: gometalinter --config gometalinter.json  ./...
-      - run: go build cmd/avida/avida.go
+      - run: make lint
+      - run: make test
+      - run: make build

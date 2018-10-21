@@ -32,7 +32,8 @@ build:
 .PHONY: build
 
 test:
-	go test $(PKGS)
+	go vet -v $(PKGS)
+	go test -v $(PKGS)
 .PHONY: test
 
 lint: $(GOMETALINTER)
