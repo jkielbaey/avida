@@ -39,6 +39,9 @@ jobs:
       - run:
           name: Build all release artifacts
           command: VERSION=${CIRCLE_TAG} make release
+      - run:
+          name: Publish on Github release
+          command: ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${CIRCLE_TAG} ./release/
 
 workflows:
   version: 2
