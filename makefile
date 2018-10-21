@@ -6,7 +6,7 @@ PLATFORMS := windows linux darwin
 BINARY := avida
 
 # These will be provided to the target
-VERSION := 0.0.1
+VERSION ?= 0.0.0
 BUILD := `git rev-parse HEAD`
 
 # Use linker flags to provide version/build settings to the target
