@@ -6,12 +6,21 @@ jobs:
   build:
     docker:
       - image: circleci/golang:1.9
-
     working_directory: /go/src/github.com/jkielbaey/avida
     steps:
       - checkout
-      - run: go get -u github.com/golang/dep/cmd/dep github.com/alecthomas/gometalinter && gometalinter --install
-      - run: dep ensure --vendor-only
-      - run: make lint
-      - run: make test
-      - run: make build
+      - run:
+          name: Install go tools
+          command: go get -u github.com/golang/dep/cmd/dep github.com/alecthomas/gometalinter && gometalinter --install
+      - run:
+          name: Install dependencies
+          command: dep ensure --vendor-only
+      - run:
+          name: Linting
+          command: make lint
+      - run:
+          name: Testing
+          command: make test
+      - run:
+          name: Build single artifact
+          command: make build
