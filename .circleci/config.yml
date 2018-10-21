@@ -24,3 +24,21 @@ jobs:
       - run:
           name: Build single artifact
           command: make build
+  publish-github-release:
+    docker:
+      - image: cibuilds/github:latest
+    working_directory: /go/src/github.com/jkielbaey/avida
+    steps:
+      - checkout
+      - run:
+          name: Build all release artifacts
+          command: make release
+
+workflows:
+  version: 2
+  main:
+    jobs:
+      - build
+      - publish-github-release:
+          requires:
+            - build
