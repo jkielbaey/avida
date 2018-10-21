@@ -6,8 +6,9 @@ import (
 
 // Position presents a single position in either a wallet or an exchange.
 type Position struct {
-	Symbol string
-	Amount float64
+	Symbol    string
+	CmcSymbol string
+	Amount    float64
 }
 
 // NewPosition creates a new Position.
@@ -15,6 +16,13 @@ func NewPosition(symbol string, amount float64) *Position {
 	p := new(Position)
 	p.Symbol = symbol
 	p.Amount = amount
+
+	// Binance and Coinmarketcap don't always have same symbol :(
+	if symbol == "BCC" {
+		p.CmcSymbol = "BCH"
+	} else {
+		p.CmcSymbol = symbol
+	}
 	return p
 }
 
@@ -22,13 +30,12 @@ func NewPosition(symbol string, amount float64) *Position {
 // price of the coin on CoinMarketCap.
 func (p *Position) GetValueUSD() (float64, error) {
 	pr, err := cmc.Price(&cmc.PriceOptions{
-		Symbol:  p.Symbol,
+		Symbol:  p.CmcSymbol,
 		Convert: "USD",
 	})
 	if err != nil {
 		return 0.0, err
 	}
-	// c := coinMap.Coins[strings.ToLower(p.Symbol)]
 	v := p.Amount * pr
 	return v, nil
 }
