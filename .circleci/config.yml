@@ -38,7 +38,7 @@ jobs:
           command: dep ensure --vendor-only
       - run:
           name: Build all release artifacts
-          command: make release
+          command: VERSION=${CIRCLE_TAG} make release
 
 workflows:
   version: 2
@@ -48,3 +48,8 @@ workflows:
       - publish-github-release:
           requires:
             - build
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^\d+\.\d+\.\d+$/
