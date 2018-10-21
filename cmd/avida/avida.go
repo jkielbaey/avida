@@ -64,7 +64,11 @@ func main() {
 	// Determine the USD value of all positions.
 	totalValueUSD := 0.0
 	for _, p := range allPositions {
-		v, _ := p.GetValueUSD()
+		v, err := p.GetValueUSD()
+		if err != nil {
+			logger.Error(err)
+			fmt.Printf("ERROR: %s\n", err)
+		}
 		fmt.Printf("%5s : %7.2f => $%7.2f\n", p.Symbol, p.Amount, v)
 		totalValueUSD += v
 	}
