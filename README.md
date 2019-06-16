@@ -14,7 +14,7 @@ Download the relevant binary from [releases](https://github.com/jkielbaey/avida/
 
 ### Configuration
 
-All configuration is done using a ```.avida.toml``` file in your user's home directory.
+All configuration is done using a `.avida.toml` file in your user's home directory.
 
 To add an exchange you should add a section as below. (Currently only binance is supported).
 
@@ -35,7 +35,7 @@ amount = 199.34
 
 ### Usage
 
-Just run `avida``
+Just run `avida`
 
 ```sh
 $ avida
@@ -45,17 +45,13 @@ $ avida
  Total ==>         $ 199.35
 ```
 
-## Development
-
-To be documented.
-
 ## Contributing
 
 1. Fork it!
 1. Create your feature branch: `git checkout -b my-new-feature`
 1. Commit your changes: `git commit -am 'Add some feature'`
 1. Push to the branch: `git push origin my-new-feature`
-1. Submit a pull request :Do us.
+1. Submit a pull request :D.
 
 ## License
 
