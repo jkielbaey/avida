@@ -45,6 +45,10 @@ $ avida
  Total ==>         $ 199.35
 ```
 
+## Known issues
+
+Unfortunately Binance and CoinMarketCap don't use the same symbols for all cryptocurrencies. This can lead to an incorrect total values of your portfolio.
+
 ## Contributing
 
 1. Fork it!
